@@ -2,15 +2,19 @@ import Dashboard from "./views/Dashboard.js";
 import Posts from "./views/Posts.js";
 import Settings from "./views/Settings.js";
 
+const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
+
 const navigateTo = url => {
   history.pushState(null, null, url);
   router();
 };
 
 const router = async () => {
+  console.log(pathToRegex("/posts/:id"));
   const routes = [
     { path: "/", view: Dashboard },
     { path: "/posts", view: Posts },
+    //{ path: "/posts/:id", view: ViewPost },
     { path: "/settings", view: Settings }
   ];
 
