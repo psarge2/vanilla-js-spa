@@ -22,11 +22,11 @@ const router = async () => {
   const potentialMatches = routes.map(route => {
     return {
       route: route,
-      isMatch: location.pathname === route.path
+      result: location.pathname.match(pathToRegex(route.path))
     };
   });
 
-  let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);
+  let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
 
   if(!match) {
     match = {
